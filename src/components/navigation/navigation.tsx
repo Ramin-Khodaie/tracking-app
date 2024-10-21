@@ -4,18 +4,20 @@ import { Chart, Home, Profile } from 'iconsax-react'
 import { cn } from '../../lib/utils'
 
 const navItems = [
-	{ name: 'Home', path: '/', icon: <Home /> },
-	{ name: 'Reports', path: '/reports', icon: <Chart /> },
-	{ name: 'Profile', path: '/profile', icon: <Profile /> }
+	{ name: 'Home', path: '/', icon: <Home />, isExact: true },
+	{ name: 'Reports', path: '/reports', icon: <Chart />, isExact: false },
+	{ name: 'Profile', path: '/profile', icon: <Profile />, isExact: true }
 ]
 
 const Navigation = () => {
 	const location = useLocation()
 
 	return (
-		<div className='flex items-center justify-around pt-4 pb-2 bg-white shadow-[0px_-1px_48px_0px_#00000024] fixed bottom-0 w-full'> 
+		<div className='flex items-center justify-around pt-4 pb-2 bg-white shadow-[0px_-1px_48px_0px_#00000024] fixed bottom-0 w-full'>
 			{navItems.map((item, index) => {
-				const activeLink = item.path === location.pathname
+				const activeLink = item.isExact
+					? location.pathname === item.path
+					: location.pathname.startsWith(item.path)
 				return (
 					<Link
 						key={index}

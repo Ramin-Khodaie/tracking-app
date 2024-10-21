@@ -3,6 +3,7 @@ import { Layout } from '../layout'
 import Home from '../pages/home'
 import Reports from '../pages/reports'
 import Profile from '../pages/profile'
+import MealReport from '../pages/pie-chart'
 
 const router = createBrowserRouter([
 	{
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
 			{
 				path: '/reports',
 				element: <Reports />
+			},
+			{
+				path: '/reports/:id',
+				element: <MealReport />
 			},
 			{
 				path: '/profile',

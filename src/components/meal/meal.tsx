@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import useSWR from 'swr'
 
 const fether = () =>
@@ -7,52 +8,9 @@ const fether = () =>
 
 const Meal = () => {
 	const { data, isLoading } = useSWR('/api/meals', fether)
-	console.log('🚀 ~ file: meal.tsx:10 ~ Meal ~ data:', data)
-
-	const mealItem = [
-		{
-			title: 'Oatmeal with Berries',
-			type: 'Breakfast',
-			info: {
-				kcal: 350,
-				protein: 35,
-				carbs: 60,
-				fat: 5
-			}
-		},
-		{
-			title: 'Grilled Chicken Salad',
-			type: 'Lunch',
-			info: {
-				kcal: 350,
-				protein: 35,
-				carbs: 60,
-				fat: 5
-			}
-		},
-		{
-			title: 'Baked Salmon with Quinoa',
-			type: 'Dinner',
-			info: {
-				kcal: 350,
-				protein: 35,
-				carbs: 60,
-				fat: 5
-			}
-		},
-		{
-			title: 'Greek Yogurt',
-			type: 'Snacks',
-			info: {
-				kcal: 350,
-				protein: 35,
-				carbs: 60,
-				fat: 5
-			}
-		}
-	]
+	let navigate = useNavigate()
 	return (
-		<div className='flex flex-col bg-white rounded-lg py-3 px-2 gap-3 mb-16'>
+		<div className='flex flex-col bg-white rounded-lg py-3 px-2 gap-3 mb-16 mt-8 '>
 			<div className='flex justify-between'>
 				<p className='font-bold text-lg'>Today meal</p>
 				<img src='/icons/organic-food.svg' alt='food' />
@@ -66,7 +24,10 @@ const Meal = () => {
 						))
 				]}
 				{data?.map((meal: any) => (
-					<div className='bg-neutral-100 px-3 py-2 rounded-lg flex flex-col gap-3'>
+					<div
+						className='bg-neutral-100 px-3 py-2 rounded-lg flex flex-col gap-3'
+						onClick={() => navigate(`/reports/${meal.id}`)}
+					>
 						<div className='flex justify-between'>
 							<h6 className='font-bold'>{meal.attributes.title}</h6>
 							<span className='text-primary'>{meal.attributes.type}</span>
