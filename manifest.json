@@ -1,0 +1,15 @@
+{
+ "name": "Tracking App",
+ "short_name": "Demo",
+ "start_url": "src/main.tsx",
+ "icons": [
+ {
+ "src": "/icons/organic-food.svg",
+ "sizes": "192x192",
+ "type": "image/png"
+ }
+ ],
+ "background_color": "#3E4EB8",
+ "display": "standalone",
+ "theme_color": "#2E3AA1"
+}

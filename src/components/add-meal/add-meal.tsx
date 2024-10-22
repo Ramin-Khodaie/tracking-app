@@ -64,14 +64,14 @@ const AddMeal = () => {
 		form.reset()
 	}
 	return (
-		<div className='fixed bottom-20 right-4'>
+		<div className='fixed bottom-20 right-4 lg:right-36 xl:right-[360px]'>
 			<Sheet>
 				<SheetTrigger>
 					<button
 						className='text-xl py-3 px-4 text-center rounded-xl  bg-black text-primary'
 						type='button'
 					>
-						<span className='text-center'>+</span>
+						<span className='text-center text-secondary text-2xl '>+</span>
 					</button>
 				</SheetTrigger>
 				<SheetContent className='bg-neutral-900' side={'bottom'}>
@@ -147,7 +147,7 @@ const AddMeal = () => {
 							</div>
 							<SheetFooter>
 								<SheetClose>
-									<button className='text-primary mt-3' type='submit'>
+									<button className='text-secondary mt-3' type='submit'>
 										Save changes
 									</button>
 								</SheetClose>

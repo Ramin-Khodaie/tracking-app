@@ -10,7 +10,7 @@ const Meal = () => {
 	const { data, isLoading } = useSWR('/api/meals', fether)
 	let navigate = useNavigate()
 	return (
-		<div className='flex flex-col bg-white rounded-lg py-3 px-2 gap-3 mb-16 mt-8 '>
+		<div className='flex flex-col bg-white rounded-lg py-3 px-2 gap-3 mt-8 '>
 			<div className='flex justify-between'>
 				<p className='font-bold text-lg'>Today meal</p>
 				<img src='/icons/organic-food.svg' alt='food' />
@@ -23,8 +23,9 @@ const Meal = () => {
 							<div key={index} className='h-16 bg-neutral-100 rounded-lg' />
 						))
 				]}
-				{data?.map((meal: any) => (
+				{data?.map((meal: any, index:number) => (
 					<div
+						key={index}
 						className='bg-neutral-100 px-3 py-2 rounded-lg flex flex-col gap-3'
 						onClick={() => navigate(`/reports/${meal.id}`)}
 					>
