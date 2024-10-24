@@ -30,7 +30,7 @@ const Navigation = () => {
 					>
 						{item.icon}
 						<span className={cn('text-xs', activeLink && 'font-medium')}>
-							{/* {item.name} */}
+							{item.name}
 						</span>
 					</Link>
 				)

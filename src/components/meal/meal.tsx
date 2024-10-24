@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import useSWR from 'swr'
+import { Meal as MealType } from '../../types/meal.interface'
 
 const fether = () =>
 	fetch(`${process.env.REACT_APP_API_URL}/api/meals`)
@@ -7,8 +8,8 @@ const fether = () =>
 		.then(strapiData => strapiData.data)
 
 const Meal = () => {
-	const { data, isLoading } = useSWR('/api/meals', fether)
-	let navigate = useNavigate()
+	const { data, isLoading } = useSWR<MealType[]>('/api/meals', fether)
+	const navigate = useNavigate()
 	return (
 		<div className='flex flex-col bg-white rounded-lg py-3 px-2 gap-3 mt-8 '>
 			<div className='flex justify-between'>
@@ -23,7 +24,7 @@ const Meal = () => {
 							<div key={index} className='h-16 bg-neutral-100 rounded-lg' />
 						))
 				]}
-				{data?.map((meal: any, index:number) => (
+				{data?.map((meal, index:number) => (
 					<div
 						key={index}
 						className='bg-neutral-100 px-3 py-2 rounded-lg flex flex-col gap-3'
@@ -36,7 +37,7 @@ const Meal = () => {
 						<div className='text-[11px] text-neutral-500'>
 							info: <span>{meal.attributes.info.kcal} kcal</span>,
 							<span>{meal.attributes.info.protein}g Protein</span>,
-							<span>{meal.attributes.info.carbs}g Carbs</span>,
+							<span>{meal.attributes.info.carbons}g Carbs</span>,
 							<span>{meal.attributes.info.fat}g Fat</span>
 						</div>
 					</div>

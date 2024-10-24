@@ -5,22 +5,26 @@ import useSWR from 'swr'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
-const fetcher = (id: any) =>
+type ChartData = {
+	name: string,
+	y: number
+}
+const fetcher = (id: string) =>
 	fetch(`${process.env.REACT_APP_API_URL}/api/meals/${id}`)
 		.then(res => res.json())
 		.then(strapiData => strapiData.data)
 
 const MealReport = () => {
 	const { id } = useParams()
-	const { data } = useSWR(`/api/meals/${id}`, () => fetcher(id))
+	const { data } = useSWR(`/api/meals/${id}`, () => fetcher(id as string))
 
-	const [chartData, setChartData] = useState<any>([])
+	const [chartData, setChartData] = useState<ChartData[]>([])
 	const [options, setOptions] = useState({})
 
 	useEffect(() => {
 		if (data) {
 			Object.keys(data?.attributes?.info).map(item =>
-				setChartData((prevState: any) => [
+				setChartData((prevState) => [
 					...prevState,
 					{ name: item, y: Number(data.attributes.info[item]) }
 				])
